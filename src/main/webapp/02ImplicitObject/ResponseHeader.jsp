@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 <% 
 //날짜형식을 지정한다
-SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd");
+SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 /*
 getTime() : 날짜를 1970년 1월 1일부터 지금까지의 시간을 초단위로 변경하여
 	반환한다. 이를 타임스템프 라고 한다.
@@ -38,6 +38,8 @@ response.addIntHeader("myNumber", 1004);//1004
 //최초 '홍길동'이 추가된 후 '안중근'으로 변경된다.
 response.addHeader("myName", add_str);//홍길동
 response.setHeader("myName", "안중근");//수정
+
+//response.setContentType("application/octet-stream");
 %>
 <!DOCTYPE html>
 <html>
@@ -58,10 +60,23 @@ response.setHeader("myName", "안중근");//수정
 		<li><%= hName %> : <%= hValue %></li>
 	<%
 	}
+	/*
+	출력결과에서 날짜의 경우 하루전인 11월 30일이 출력된다. 이것이 대한민국이
+	세계표준시(그리니치 천문대)에 +09 즉 9시간이 빨라서 생기는 현상으로
+	9시간을 더해줘야 정상적인 날짜가 출력된다.
+	
+	myNumber라는 헤더명이 2번 출력되는데 8282만 나오는걸 볼 수 있다. 이것은
+	getHeader()메서드의 특성으로 처음 입력한 헤더값만 출력된다.
+	*/
 	%>
 	
 	<h2>myNumber만 출력하기</h2>
 	<%
+	/*
+	myNumber라는 헤더명으로 2개의 값을 추가했으므로 아래에서는 각각의
+	값이 정상적으로 출력된다. 즉 add 계열의 메서드는 헤더명을 동일하게
+	사용하더라도 덮어쓰기 되지 않고 각각 추가되게 된다.
+	*/
 	Collection<String> myNumber = response.getHeaders("myNumber");
 	for (String myNUm : myNumber) {
 	%>
