@@ -9,7 +9,7 @@
 <body>
 	<!-- 액션태그를 통해 외부 JSP파일을 현재 문서에 인클루드 한다. -->
 	<jsp:include page="../Common/Link.jsp"/>
-	<%@ include file="../Common/Link.jsp" %>
+	<%--@ include file="../Common/Link.jsp" --%>
 	
 	<h2>로그인 페이지</h2>
 	
