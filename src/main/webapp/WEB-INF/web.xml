@@ -22,9 +22,9 @@
   </context-param>
   
   <!-- 에러페이지 처리하기. 하위 3가지의 에러가 발생되면 지정된 파일로 즉시 포워드된다. 
-  단, 이 설정은 개발이 완료된 후 실제 서비스를 위해 배포한 경우에만 적용하는것이 좋다.
-  개발시에는 오류가 발생했을때 웹페이지를 통해서-->
-  <error-page>
+	   단, 이 설정은 개발이 완료된 후 실제 서비스를 위해 배포한 경우에만 적용하는 것이 좋다.
+	   개발시에는 오류가 발생했을 때 웹페이지를 통해서도 디버깅을 해야 하기 때문이다. -->
+  <!-- <error-page>
   	<error-code>404</error-code>
   	<location>/02ImplicitObject/Exception.jsp</location>
   </error-page>
@@ -35,7 +35,7 @@
   <error-page>
   	<error-code>500</error-code>
   	<location>/02ImplicitObject/Exception.jsp</location>
-  </error-page>
+  </error-page> -->
   
   <!-- 오라클 JDBC를 위한 드라이버 및 연결 정보 -->
   <context-param>
@@ -54,9 +54,23 @@
   	<param-name>OraclePwd</param-name>
   	<param-value>1234</param-value>
   </context-param>
+  
   <!-- 세션유지시간 설정 : 분단위 -->
   <session-config>
    <session-timeout>20</session-timeout>
   </session-config>
   
+  <!-- 
+  게시판의 페이징 기능 추가
+  	POSTS_PER_PAGE  : 한 페이지에 출력할 게시물의 개수를 설정
+  	PAGES_PER_BLOCK : 한 블럭당 출력할 페이지 번호의 개수를 설정
+  -->
+  <context-param>
+  	<param-name>POSTS_PER_PAGE</param-name>
+  	<param-value>10</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>PAGES_PER_BLOCK</param-name>
+  	<param-value>5</param-value>
+  </context-param>
 </web-app>
