@@ -73,4 +73,44 @@
   	<param-name>PAGES_PER_BLOCK</param-name>
   	<param-value>5</param-value>
   </context-param>
+  
+  <!-- 서블릿 요청명에 대한 매핑 설정 -->
+  <servlet>
+ 	<!-- 3.요청을 받을 서블릿의 이름 지정 -->
+  	<servlet-name>HelloServlet</servlet-name>
+  	<!-- 4.클라이언트의 요청을 처리할 서블릿 클래스를 지정(패키지명 포함) -->
+  	<servlet-class>servlet.HelloServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<!-- 2.요청을 전달할 서블릿의 이름 지정 -->
+  	<servlet-name>HelloServlet</servlet-name>
+  	<!-- 1.클라이언트가 직접 링크를 통해 서버로 요청하는 요청명 -->
+  	<url-pattern>/12Servlet/HelloServlet.do</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 서블릿에서 직접 출력 -->
+  <servlet>
+  	<servlet-name>DirectServletPrint</servlet-name>
+  	<servlet-class>servlet.DirectServletPrint</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DirectServletPrint</servlet-name>
+  	<url-pattern>/12Servlet/DirectServletPrint.do</url-pattern>
+  </servlet-mapping>
+  
+  <!-- MVC 패턴으로 간단한 회원인증 구현 -->
+  <servlet>
+	  <servlet-name>MemberAuth</servlet-name>
+	  <servlet-class>servlet.MemberAuth</servlet-class>
+	  <!-- 해당 서블릿에서만 사용할 수 있는 초기화 파라미터. 만약 웹애플리케이션
+	  전체에서 사용해야 한다면 <context-param>으로 등록해야한다. -->
+	  <init-param>
+	  	<param-name>admin_id</param-name>
+	  	<param-value>nakja</param-value>
+	  </init-param>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>MemberAuth</servlet-name>
+  	<url-pattern>/12Servlet/MemberAuth.mvc</url-pattern>
+  </servlet-mapping>
 </web-app>
