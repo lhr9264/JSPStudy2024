@@ -26,7 +26,7 @@ public class MemberDAO extends JDBConnect{
 	사용자가 입력한 아이디 ,패스워드를 통해 회원테이블을 select한 후
 	존재하는 회원정보인 경우 DTO객체에 레코드를 담아 반환한다. 
 	*/
-	public MemberDTO getMemberDTO(String uid, String upass) {
+	public MemberDTO getMemberDTO(String id, String pass) {
 		MemberDTO dto = new MemberDTO();
 		/* 로그인 폼에서 입력한 아이디, 패스워드를 통해 인파라미터를 설정할
 		수 있또록 쿼리문을 작성 */
@@ -36,8 +36,8 @@ public class MemberDAO extends JDBConnect{
 			//쿼리문 실행과 인파라미터 설정을 위한 prepared 인스턴스 생성
 			psmt = con.prepareStatement(query);
 			//인파라미터를 설정
-			psmt.setString(1, uid);
-			psmt.setString(2, upass);
+			psmt.setString(1, id);
+			psmt.setString(2, pass);
 			//쿼리문을 실행한 후 결과는 ResultSet을 통해 반환
 			rs = psmt.executeQuery();
 			//반환된 ResultSet에 회원정보가 저장되어 있는지 확인

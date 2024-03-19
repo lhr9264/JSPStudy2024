@@ -12,13 +12,3 @@ session.invalidate();
 //로그아웃 처리후 로그인 페이지로 '이동'한다.
 response.sendRedirect("LoginForm.jsp");
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
-</html>
